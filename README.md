@@ -1,2 +1,2 @@
 # Cloud Native
-Just a best practice show case demo
+Just a collection of experience and knowledge in one place
