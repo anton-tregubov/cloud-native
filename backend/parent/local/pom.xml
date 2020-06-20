@@ -9,4 +9,5 @@
         <relativePath>../super/pom.xml</relativePath>
     </parent>
     <artifactId>local</artifactId>
+    <packaging>pom</packaging>
 </project>

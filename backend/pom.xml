@@ -6,6 +6,7 @@
     <artifactId>aggregator</artifactId>
     <name>Root Backed Cloud Native Aggregator</name>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <modules>
         <module>parent/api</module>
         <module>parent/application</module>

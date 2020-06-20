@@ -9,4 +9,5 @@
         <relativePath>../super/pom.xml</relativePath>
     </parent>
     <artifactId>api</artifactId>
+    <packaging>pom</packaging>
 </project>
