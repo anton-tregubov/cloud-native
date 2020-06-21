@@ -13,9 +13,40 @@
         <java-version>11</java-version>
         <immutables-version>2.8.8</immutables-version>
         <quarkus-version>1.5.2.Final</quarkus-version>
+        <vavr-version>0.10.2</vavr-version>
+        <vavr-immutables-version>0.6.0</vavr-immutables-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jsr-305-version>3.0.2</jsr-305-version>
     </properties>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${failsafe-plugin-version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${compiler-plugin-version}</version>
+                    <configuration>
+                        <release>${java-version}</release>
+                        <target>${java-version}</target>
+                        <parameters>true</parameters>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${surefire-plugin-version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-maven-plugin</artifactId>
+                    <version>${quarkus-version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -29,6 +60,27 @@
                 <groupId>org.immutables</groupId>
                 <artifactId>immutables</artifactId>
                 <version>${immutables-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.vavr</groupId>
+                <artifactId>vavr</artifactId>
+                <version>${vavr-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.vavr</groupId>
+                <artifactId>vavr-jackson</artifactId>
+                <version>>${vavr-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.immutables.vavr</groupId>
+                <artifactId>vavr-encodings</artifactId>
+                <version>${vavr-immutables-version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${jsr-305-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
