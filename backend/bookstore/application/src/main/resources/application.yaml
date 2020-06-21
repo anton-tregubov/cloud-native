@@ -1,0 +1,9 @@
+quarkus:
+  http:
+    cors: true
+  log:
+    category:
+      "io.quarkus.category":
+        level: INFO
+  swagger-ui:
+    always-include: true # temp
