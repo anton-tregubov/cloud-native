@@ -1,7 +1,10 @@
 package ru.faulab.cloud.bookstore.application;
 
+import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.openapi.*;
 import org.eclipse.microprofile.openapi.models.*;
+
+import java.util.Optional;
 
 public class OpenApiEnricher implements OASFilter
 {
@@ -18,6 +21,8 @@ public class OpenApiEnricher implements OASFilter
     @Override
     public void filterOpenAPI(OpenAPI openAPI)
     {
-        openAPI.getInfo().version("42");
+        Optional<String> optionalValue = ConfigProvider.getConfig().getOptionalValue("quarkus.application.version", String.class);
+        String applicationVersion = optionalValue.orElse("unknown");
+        openAPI.getInfo().version(applicationVersion);
     }
 }
