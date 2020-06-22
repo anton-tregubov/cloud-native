@@ -7,3 +7,11 @@ quarkus:
         level: INFO
   swagger-ui:
     always-include: true # temp
+
+mp:
+  openapi:
+    filter: ru.faulab.cloud.bookstore.application.OpenApiEnricher
+"%dev":
+  mp:
+    openapi:
+      servers: "http://localhost:8080,http://127.0.0.1:8080"
