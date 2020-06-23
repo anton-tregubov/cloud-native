@@ -7,6 +7,7 @@ import org.eclipse.microprofile.openapi.annotations.media.ExampleObject;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.*;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import ru.faulab.cloud.bookstore.application.api.Book;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.time.*;
+import java.util.List;
 import java.util.concurrent.*;
 
 @ApplicationScoped
@@ -67,5 +69,16 @@ public class BookstoreEndPoint
             @PathParam("text") String text)
     {
         return CompletableFuture.supplyAsync(() -> "Echo: " + text, managedExecutor);
+    }
+
+    @GET
+    @Path("books")
+    @Produces(MediaType.APPLICATION_JSON)
+    @NotNull
+    @Operation(summary = "List books", operationId = "list-books")
+    @Tag(name = "Books")
+    public CompletionStage<List<Book>> list(/*filter, limits, paging*/)
+    {
+        return CompletableFuture.supplyAsync(() -> List.of(Book.builder().id("id").build()));
     }
 }

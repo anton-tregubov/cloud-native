@@ -58,7 +58,7 @@
             </dependency>
             <dependency>
                 <groupId>org.immutables</groupId>
-                <artifactId>immutables</artifactId>
+                <artifactId>value</artifactId>
                 <version>${immutables-version}</version>
             </dependency>
             <dependency>
@@ -69,7 +69,7 @@
             <dependency>
                 <groupId>io.vavr</groupId>
                 <artifactId>vavr-jackson</artifactId>
-                <version>>${vavr-version}</version>
+                <version>${vavr-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.immutables.vavr</groupId>
