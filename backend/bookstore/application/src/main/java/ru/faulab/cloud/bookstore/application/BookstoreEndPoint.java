@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 @ApplicationScoped
-@Path("bookstore")
+@Path("v1/bookstore")
 public class BookstoreEndPoint
 {
     @Inject
