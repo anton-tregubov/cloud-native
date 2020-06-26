@@ -22,7 +22,6 @@ import javax.ws.rs.core.Application;
                 version = "Add during build"
         ),
         tags = {
-                @Tag(name = "Temp"),
                 @Tag(name = "Books", description = "Book CRUD operations"),
         }
 )

@@ -12,7 +12,7 @@ import java.io.Serializable;
 @JsonSerialize(as = OrganizationBuilder.ImmutableOrganization.class)
 @JsonDeserialize(as = OrganizationBuilder.ImmutableOrganization.class)
 @Schema(description = "Short information about real organization")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Organization.class)
 public interface Organization extends Serializable
 {
     @NotNull
