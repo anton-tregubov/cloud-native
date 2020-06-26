@@ -1,7 +1,9 @@
 package ru.faulab.cloud.bookstore.application.impl;
 
+import io.vavr.Tuple2;
 import io.vavr.collection.Map;
 import io.vavr.collection.TreeMap;
+import io.vavr.control.Option;
 import ru.faulab.cloud.bookstore.application.BookstoreService;
 import ru.faulab.cloud.bookstore.application.api.*;
 
@@ -28,7 +30,7 @@ public class BookstoreServiceImpl implements BookstoreService
     }
 
     @Override
-    public CompletionStage<Book> findBooksById(String id)
+    public CompletionStage<Book> findBookById(String id)
     {
         return this.books.get(id).toCompletableFuture();
     }
@@ -39,5 +41,20 @@ public class BookstoreServiceImpl implements BookstoreService
         Book createBook = Book.builder(book).id(UUID.randomUUID().toString()).build();
         this.books = this.books.put(createBook.getId(), createBook);
         return CompletableFuture.completedStage(createBook);
+    }
+
+    @Override
+    public CompletionStage<Void> deleteBookById(String id)
+    {
+        this.books = this.books.remove(id);
+        return CompletableFuture.completedStage(null);
+    }
+
+    @Override
+    public CompletionStage<Book> updateBookById(String id, NewBook book)
+    {
+        Tuple2<Option<Book>, ? extends Map<String, Book>> result = this.books.computeIfPresent(id, (key, oldBook) -> Book.builder(book).id(UUID.randomUUID().toString()).build());
+        this.books = result._2;
+        return result._1.toCompletableFuture();
     }
 }

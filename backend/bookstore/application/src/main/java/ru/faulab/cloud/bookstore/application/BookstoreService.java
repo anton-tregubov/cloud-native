@@ -9,7 +9,11 @@ public interface BookstoreService
 {
     CompletionStage<List<Book>> findBooksByCondition();
 
-    CompletionStage<Book> findBooksById(String id);
+    CompletionStage<Book> findBookById(String id);
 
     CompletionStage<Book> createBook(NewBook book);
+
+    CompletionStage<Void> deleteBookById(String id);
+
+    CompletionStage<Book> updateBookById(String id, NewBook book);
 }

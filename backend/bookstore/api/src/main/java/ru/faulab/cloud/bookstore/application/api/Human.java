@@ -29,7 +29,7 @@ public interface Human extends Serializable
 
     @NotNull
     @PastOrPresent
-    @Schema(description = "Human birthday", example = " 1828-09-09", type = SchemaType.STRING)
+    @Schema(description = "Human birthday", example = "1828-09-09", type = SchemaType.STRING)
     LocalDate getBirthday();
 
     interface Builder
