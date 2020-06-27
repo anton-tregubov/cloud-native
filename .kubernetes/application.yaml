@@ -4,3 +4,83 @@ metadata:
   name: cloud-native
 
 ---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+  namespace: cloud-native
+  labels:
+    application: identity-provider
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    application: identity-provider
+  type: LoadBalancer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: cloud-native
+  labels:
+    application: identity-provider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: identity-provider
+  template:
+    metadata:
+      namespace: cloud-native
+      labels:
+        application: identity-provider
+    spec:
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:10.0.2
+          env:
+            - name: KEYCLOAK_USER
+              value: "admin"
+            - name: KEYCLOAK_PASSWORD
+              value: "admin"
+            - name: PROXY_ADDRESS_FORWARDING
+              value: "true"
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: https
+              containerPort: 8443
+          readinessProbe:
+            httpGet:
+              path: /auth/realms/master
+              port: 8080
+          livenessProbe:
+            initialDelaySeconds: 60
+            httpGet:
+              path: /auth/realms/master
+              port: 8080
+
+---
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: keycloak-ingress
+  namespace: cloud-native
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: cloud-native.ru
+      http:
+        paths:
+          - path: /auth/admin/master/console(/|$)(.*)
+            backend:
+              serviceName: keycloak
+              servicePort: 8080
