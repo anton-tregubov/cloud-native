@@ -6,8 +6,9 @@ quarkus:
       "io.quarkus.category":
         level: INFO
   swagger-ui:
-    always-include: true # temp
-
+    always-include: true
+  native:
+    container-build: true
 mp:
   openapi:
     filter: ru.faulab.cloud.bookstore.application.OpenApiEnricher

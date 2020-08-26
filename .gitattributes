@@ -2,11 +2,15 @@
 *.ts text eol=lf
 *.java text eol=lf
 *.md text eol=lf
+*.yml text eol=lf
 *.yaml text eol=lf
 *.html text eol=lf
 *.xml text eol=lf
 *.json text eol=lf
 *.sh text eol=lf
+*.cmd text eol=lf
+*.native text eol=lf
+*.dockerignore text eol=lf
 *.svg text eol=lf
 *.mp4 binary
 *.png binary
