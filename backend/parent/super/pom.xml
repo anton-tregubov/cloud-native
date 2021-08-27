@@ -12,7 +12,7 @@
         <failsafe-plugin-version>2.22.2</failsafe-plugin-version>
         <java-version>11</java-version>
         <immutables-version>2.8.8</immutables-version>
-        <quarkus-version>1.7.3.Final</quarkus-version>
+        <quarkus-version>2.1.4.Final</quarkus-version>
         <vavr-version>0.10.3</vavr-version>
         <microprofile-version>3.3</microprofile-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
